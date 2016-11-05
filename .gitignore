@@ -19,6 +19,8 @@
 .idea/uiDesigner.xml
 .idea/*
 
+.includes/baseconnect.php
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
