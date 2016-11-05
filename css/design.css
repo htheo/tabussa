@@ -72,15 +72,15 @@ nav {
 }
 .white_nav a {
     color: white;
-    width: 5%;
-    padding: 2%;
+    width: 10%;
+    padding: 2% 0 2% 0;
     transition-duration: 1s;
     text-align: center;
 }
 .black_nav a {
     color: black;
-    width: 5%;
-    padding: 1% 2% 1% 2%;
+    width: 10%;
+    padding: 2% 0 2% 0;
     transition-duration: 1s;
     text-align: center;
 }
@@ -89,7 +89,7 @@ nav a:hover {
 }
 
 nav img {
-    width: 100%;
+    width: 20%;
 }
 
 /* documentation */
