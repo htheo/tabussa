@@ -19,7 +19,7 @@ if(isset($nom_second_url)){
     echo "</div>";
 }else if($nom_first_url=="documentation"){
     echo "<div class='documentation'>";
-    echo "doc";
+    include "blocs/documentation.php";
     echo "</div>";
 }else {
     $black=true;

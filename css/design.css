@@ -19,7 +19,6 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
 }
 
@@ -47,6 +46,8 @@ a {
     font-family: 'Boogaloo', cursive;
     padding-top: 10%;
     font-size: 6em;
+    font-style: inherit;
+
 }
 .accueil p {
     font-family: sans-serif;
@@ -94,8 +95,39 @@ nav img {
 
 /* documentation */
 
-.documentation{
-    padding-top: 8%;
+.doc{
+
+    padding-left: 20%;
+}
+.documentation {
+    padding-top: 6%;
+}
+.documentation h1 {
+    width: 80%;
+    color: white;
+    font-size: 2em;
+    font-style: inherit;
+    padding: 5% 0 5% 20%;
+    background-image: url("../image/fond2.jpeg");
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 2%;
+}
+.tips {
+    border-left:3px solid rgba(0,0,0,0.2);
+    padding: 1%;
+    margin-bottom: 2%;
+    transition-duration: 1s;
+    width: 80%;
+}
+.tips p {
+    display: none;
+    transition-duration: 1s;
+    padding: 2%;
+    width: 80%;
+}
+.tips:hover {
+    background-color: rgba(150,150,150,0.1);
 }
 
 /* error */
