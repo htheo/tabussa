@@ -1,6 +1,6 @@
 <?php
 $db_host='localhost';
-$db_name='admin_st';
+$db_name='tabussa';
 $db_charset='utf8';
 $db_user='root';
 $db_pass='root';

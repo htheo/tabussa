@@ -11,7 +11,9 @@ if(isset($nom_second_url)){
     switch ($nom_second_url){
         case "drinks":
             $drinks = get_drinks();
+
             print(json_encode($drinks));
+
             break;
     }
 }else{
