@@ -15,6 +15,15 @@
             simplement un nombre lambda et envoyer en méthode POST key=type et value=(alcool, soft ou aliment).<br><br>
             Vous allez recevoir un tableau JSON de type alcools</p>
     </div>
+    <div class="tips">
+        <h2>Récupérer les meilleurs type de boissons après un cocktail</h2>
+        <p>URL : API/cocktail<br><br>
+            Utiliser la méthode POST en envoyant un tableau de type<br><br>
+            $_POST["drinks"][0]["type"]="alcool";<br>
+            $_POST["drinks"][0]["name"]="vodka";<br><br>
+            Vous allez recevoir un tableau JSON de type de boissons les plus utilisés avec le mélange déjà fait</p>
+    </div>
+
 
 
 </div>
