@@ -23,6 +23,45 @@ if(isset($nom_second_url)){
 
             print(json_encode($cocktail));
             break;
+        case "bonus":
+            if(isset($_POST["id"])){
+                $id_cocktail=$_POST["id"];
+                $cocktail=db_select('SELECT * FROM tabussa_cocktails WHERE id='.$id_cocktail);
+                if(isset($cocktail[0])){
+                    $likes=$cocktail[0]["bonus"]+1;
+                    $id_cocktail = db_update('tabussa_cocktails', array("bonus"=>$likes), array('id'=>$id_cocktail));
+                    if(isset($id_cocktail)){
+                        $message["bonus"]=$likes;
+                    }else{
+                        $message["error"]='Erreur le like n\'a pas été envoyé';
+                    }
+                }else{
+
+                    $message["error"]='Erreur il n\'y a pas de $cocktail à cet id';
+                }
+                print(json_encode($message));
+            }
+            break;
+        case "malus":
+            if(isset($_POST["id"])){
+                $id_cocktail=$_POST["id"];
+                $cocktail=db_select('SELECT * FROM tabussa_cocktails WHERE id='.$id_cocktail);
+                if(isset($cocktail[0])){
+                    $malus=$cocktail[0]["malus"]+1;
+                    $id_cocktail = db_update('tabussa_cocktails', array("malus"=>$malus), array('id'=>$id_cocktail));
+                    if(isset($id_cocktail)){
+                        $message["malus"]=$malus;
+                    }else{
+                        $message["error"]='Erreur le like n\'a pas été envoyé';
+                    }
+                }else{
+
+                    $message["error"]='Erreur il n\'y a pas de $cocktail à cet id';
+                }
+                print(json_encode($message));
+            }
+            break;
+
         case "add_drink":
             if(isset($_POST["name"])){
                 $name=htmlentities($_POST["name"]);

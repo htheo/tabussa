@@ -23,6 +23,21 @@
             $_POST["drinks"][1]="id_alcool2";<br><br>
             Vous allez recevoir un tableau JSON de type de boissons les plus utilisés avec le mélange déjà fait</p>
     </div>
+    <div class="tips">
+        <h2>Envoyer un like au cocktail</h2>
+        <p>URL : API/bonus<br><br>
+            Utiliser la méthode POST en envoyant un tableau de type<br><br>
+            $_POST["id"]="id_alcool";<br><br>
+            Vous allez recevoir un tableau JSON avec les likes mis à jour</p>
+    </div>
+    <div class="tips">
+        <h2>Envoyer un dislike au cocktail</h2>
+        <p>URL : API/malus<br><br>
+            Utiliser la méthode POST en envoyant un tableau de type<br><br>
+            $_POST["id"]="id_alcool";<br><br>
+            Vous allez recevoir un tableau JSON avec les dislikes mis à jour</p>
+    </div>
+
 
 
 
