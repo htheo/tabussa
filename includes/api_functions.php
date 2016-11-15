@@ -68,10 +68,11 @@ function set_cocktail(){
         $cocktail_suggestions=db_select('SELECT * FROM tabussa_cocktails '.$where);
 
         $id_cocktail = cocktail_existant($add_cocktail_drinks, $where,$i);
-        if(isset($id_cocktail["id_drink0"])){
+        if(isset($id_cocktail["id_drink0"])){   //si il y a un cocktail existant
             $cocktail["visits"]=$id_cocktail["visits"];
             $cocktail["bonus"]=$id_cocktail["bonus"];
             $cocktail["malus"]=$id_cocktail["malus"];
+            update_visits($id_cocktail["id"]);
         }else{
             $cocktail["visits"]=1;
             $cocktail["bonus"]=0;

@@ -19,8 +19,8 @@
         <h2>Récupérer les meilleurs type de boissons après un cocktail</h2>
         <p>URL : API/cocktail<br><br>
             Utiliser la méthode POST en envoyant un tableau de type<br><br>
-            $_POST["drinks"][0]["type"]="alcool";<br>
-            $_POST["drinks"][0]["name"]="vodka";<br><br>
+            $_POST["drinks"][0]="id_alcool1";<br>
+            $_POST["drinks"][1]="id_alcool2";<br><br>
             Vous allez recevoir un tableau JSON de type de boissons les plus utilisés avec le mélange déjà fait</p>
     </div>
 
