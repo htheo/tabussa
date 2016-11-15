@@ -17,13 +17,27 @@ if(isset($nom_second_url)){
 
         case "cocktail":
             $_POST["drinks"][0]=82;
-            $_POST["drinks"][1]=81;
-            $_POST["drinks"][2]=85;
-            $_POST["drinks"][3]=84;
+            $_POST["drinks"][1]=110;
             $cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
 
-            echo "";
+
             print(json_encode($cocktail));
+            break;
+        case "add_drink":
+            if(isset($_POST["name"])){
+                $name=htmlentities($_POST["name"]);
+                $color=$_POST["color"];
+                $type=$_POST["type"];
+                $drink=db_select('SELECT * FROM tabussa_drinks WHERE name="'.$name.'"');
+                if(isset($drink[0])){
+                    $message='Mec ta boisson '.$_POST["name"].' existe déjà';
+                }else{
+                    db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type));
+                    $message='Ta boisson'.$_POST["name"].' a été ajouté avec succès';
+                }
+                include('controllers/admin.php');
+
+            }
             break;
     }
 }else{

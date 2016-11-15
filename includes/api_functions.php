@@ -65,14 +65,41 @@ function set_cocktail(){
             $add_cocktail_drinks["id_drink".$i]=$drink;
             $i++;
         }
-        $cocktail_suggestions=db_select('SELECT * FROM tabussa_cocktails '.$where);
+        $cocktail_suggestions=db_select('SELECT * FROM tabussa_cocktails '.$where.'ORDER BY visits');
+        $drink_suggestions=array();
+
+        if(isset($cocktail_suggestions[0])){
+            foreach ($cocktail_suggestions as $cocktail_suggestion){
+
+
+                for($k=1;$k<=10;$k++){  //on regarde les 10 ingrédients du cocktail
+                    if($cocktail_suggestion["id_drink".$k]>0){
+
+                        if (in_array($cocktail_suggestion["id_drink".$k], $drink_suggestions) || in_array($cocktail_suggestion["id_drink".$k] , $drinks)) //si l'ingredient n'est pas dans
+                        {
+
+                        }
+                        else
+                        {
+
+                            $drink_suggestions[]=$cocktail_suggestion["id_drink".$k];;
+                            $cocktail["suggestions"][]=$cocktail_suggestion["id_drink".$k];
+                        }
+                    }
+
+                }
+            }
+        }
+
 
         $id_cocktail = cocktail_existant($add_cocktail_drinks, $where,$i);
-        if(isset($id_cocktail["id_drink0"])){   //si il y a un cocktail existant
+        if(isset($id_cocktail["id"])){   //si il y a un cocktail existant
             $cocktail["visits"]=$id_cocktail["visits"];
             $cocktail["bonus"]=$id_cocktail["bonus"];
             $cocktail["malus"]=$id_cocktail["malus"];
-            update_visits($id_cocktail["id"]);
+            $visits=$id_cocktail["visits"];
+            $visits++;
+            db_update("tabussa_cocktails", array("visits"=>$visits), array("id"=>$id_cocktail["id"]));
         }else{
             $cocktail["visits"]=1;
             $cocktail["bonus"]=0;
@@ -91,7 +118,3 @@ function set_cocktail(){
 
 // UPDATE
 
-function update_visits($id_cocktail){
-    db_select('');
-    db_update("tabussa_cocktails", array(), array("id"=>$id_cocktail));
-}
