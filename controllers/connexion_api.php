@@ -65,14 +65,17 @@ if(isset($nom_second_url)){
         case "add_drink":
             if(isset($_POST["name"])){
                 $name=htmlentities($_POST["name"]);
+                $name=strtolower($name);
+                $name= ucfirst($name);
                 $color=$_POST["color"];
                 $type=$_POST["type"];
                 $drink=db_select('SELECT * FROM tabussa_drinks WHERE name="'.$name.'"');
                 if(isset($drink[0])){
-                    $message='Mec ta boisson '.$_POST["name"].' existe déjà';
+
+                    $message='Mec ta boisson '.$name.' existe déjà';
                 }else{
                     db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type));
-                    $message='Ta boisson'.$_POST["name"].' a été ajouté avec succès';
+                    $message='Ta boisson '.$name.' a été ajouté avec succès';
                 }
                 include('controllers/admin.php');
 

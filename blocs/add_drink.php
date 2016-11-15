@@ -19,6 +19,6 @@ if(isset($message)){
             <option value="aliment">Aliment</option>
         </select>
         <label for="color">Couleur de la boisson </label><input id="color" type="color" name="color" value="#ff0000"><br>
-        <input type="submit" value="Envoie moi ça !">
+        <input class="btn orange" type="submit" value="Envoie moi ça !">
     </form>
 </div>

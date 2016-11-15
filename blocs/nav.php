@@ -15,6 +15,7 @@ if($black==true){
         echo '<a href="'.$back.'"><img src="'.$niveau_url.'image/arrow_back.png" alt="retour"></a>';
     }
 
-        echo '<a href="'.$niveau_url.'documentation"> Doc API</a>';
+        echo '<a href="'.$niveau_url.'documentation">Doc API</a>';
+        echo '<a href="'.$niveau_url.'add-drink">Ajouter ingrédient</a>';
     ?>
 </nav>

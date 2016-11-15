@@ -67,8 +67,7 @@ if (isset($_POST["token"]) && isset($nom_first_url) && $nom_first_url == "API") 
             $template="admin.php";
             break;
         default:
-            $tab_alerte["error"] = "Page introuvable";
-            $template = '404.php';
+            $template="home.php";
             break;
     }
 

@@ -82,8 +82,11 @@ function set_cocktail(){
                         else
                         {
 
-                            $drink_suggestions[]=$cocktail_suggestion["id_drink".$k];;
-                            $cocktail["suggestions"][]=$cocktail_suggestion["id_drink".$k];
+                            $drink_suggestions[]=$cocktail_suggestion["id_drink".$k];
+                            $name_cocktail=db_select('SELECT name FROM tabussa_drinks WHERE id='.$cocktail_suggestion["id_drink".$k]);
+                            $name_cocktail = $name_cocktail[0]["name"];
+                            $cocktail["suggestions"][$cocktail_suggestion["id_drink".$k]]["name"]=$name_cocktail;
+
                         }
                     }
 
