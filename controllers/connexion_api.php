@@ -16,8 +16,8 @@ if(isset($nom_second_url)){
 
 
         case "cocktail":
-            $_POST["drinks"][0]=82;
-            $_POST["drinks"][1]=110;
+            /*$_POST["drinks"][0]=82;
+            $_POST["drinks"][1]=110;*/
             $cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
 
 

@@ -24,7 +24,7 @@ switch($nom_first_url){
     default:
         include 'blocs/nav.php';
         $tab_alerte["error"] = "Page introuvable";
-        $template = '404.php';
+        include 'blocs/404.php';
         break;
 
 }
