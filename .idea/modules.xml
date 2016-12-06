@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../tabussa/.idea/tabussa.iml" filepath="$PROJECT_DIR$/../tabussa/.idea/tabussa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tabussa.iml" filepath="$PROJECT_DIR$/.idea/tabussa.iml" />
     </modules>
   </component>
 </project>

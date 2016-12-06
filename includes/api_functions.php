@@ -47,10 +47,30 @@ function cocktail_existant($add_cocktail_drinks, $where, $i){ //cocktail existan
     return $id_cocktail;
 }
 
+
+function file_get_contents_curl($url) {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+    return $data;
+}
+
+
 // SETTERS
 function set_cocktail(){
-    if(isset($_POST["drinks"][0])){
-        $drinks=$_POST["drinks"];
+
+
+    $mycocktail = json_decode(file_get_contents("php://input"));
+    if(isset($mycocktail->drinks[0])){
+        $drinks=$mycocktail->drinks;
         asort($drinks);
         $where="WHERE "; //condition pour le select
         $i=1;
@@ -113,6 +133,8 @@ function set_cocktail(){
 
 
     }else{
+
+        $cocktail["requete"] = json_decode(file_get_contents("php://input"));
         $cocktail["error"]="Il n'y a pas de boissons envoyées en méthode POST";
     }
     return $cocktail;
