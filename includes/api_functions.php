@@ -26,6 +26,15 @@ function get_drinks(){ //on récupère toutes le boissons par type ou non
 
 }
 
+function get_cocktails(){ //on récupère tous les cocktails
+    $cocktails=[];
+    $cocktails=db_select('SELECT * FROM tabussa_cocktails'); // none égal à supprimé
+    if(!isset($cocktails[0])){
+        $cocktails["error"]="Il n'y a pas de cocktails";
+    }
+    return $cocktails;
+}
+
 
 function cocktail_existant($add_cocktail_drinks, $where, $i){ //cocktail existant ou non
 

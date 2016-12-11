@@ -3,7 +3,7 @@ $db_host='localhost';
 $db_name='tabussa';
 $db_charset='utf8';
 $db_user='root';
-$db_pass='root';
+$db_pass='PeaceOut';
 
 
 try

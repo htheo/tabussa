@@ -14,6 +14,10 @@ if(isset($nom_second_url)){
             print(json_encode($drinks));
             break;
 
+        case "cocktails":
+            $cocktails = get_cocktails(); // on récupère tous les cocktails en database
+            print(json_encode($cocktails));
+            break;
 
         case "cocktail":
             /*$_POST["drinks"][0]=82;
