@@ -5,15 +5,53 @@
  * Date: 05/11/16
  * Time: 18:32
  */
-
 if(isset($nom_second_url)){
-    include('includes/api_functions.php'); // on ajout le fichier php avec les fonctions de co API
+
     switch ($nom_second_url){
+        case "add_drink":
+            if(isset($_POST["name"]) && $_POST["name"]!=" " && $_POST["type"]!="" && $_POST["taille"]!=""){
+                $name=htmlentities($_POST["name"]);
+                $name=strtolower($name);
+                $name= ucfirst($name);
+                $color=$_POST["color"];
+                $type=$_POST["type"];
+                $taille=$_POST["taille"];
+                $drink=db_select('SELECT * FROM tabussa_drinks WHERE name="'.$name.'"');
+                if(isset($drink[0])){
+
+                    $message='Mec ta boisson '.$name.' existe déjà';
+                }else{
+                    $id_drink=db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type, 'taille'=>$taille));
+                    if($id_drink>0){
+                        $message='Ta boisson '.$name.' a été ajoutée avec succès';
+                    }else{
+                        $message='Erreur lors de l\'insertion';
+                    }
+
+                }
+
+
+            }else if(isset($_POST["name"])){
+                $name=htmlentities($_POST["name"]);
+                $name=strtolower($name);
+                $name_again= ucfirst($name);
+                $color_again=$_POST["color"];
+                $message = "N'oublie pas le type de ta boisson";
+            }else{
+                $message='oups';
+            }
+            include('controllers/admin.php');
+            break;
+
         case "drinks":
             $drinks = get_drinks(); // on récupère toutes les boissons en database
             print(json_encode($drinks));
             break;
 
+        case "cocktails":
+            $cocktails = get_cocktails(); // on récupère tous les cocktails en database
+            print(json_encode($cocktails));
+            break;
 
         case "cocktail":
            //$_POST["drinks"][0]=82;
@@ -21,7 +59,7 @@ if(isset($nom_second_url)){
 
             $mycocktail=file_get_contents("php://input");
 
-            //$cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
+            $cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
 
 
             print(json_encode($mycocktail));
@@ -64,35 +102,11 @@ if(isset($nom_second_url)){
                 print(json_encode($message));
             }
             break;
-
-        case "add_drink":
-            if(isset($_POST["name"]) && $_POST["name"]!=" " && $_POST["type"]!=""){
-                $name=htmlentities($_POST["name"]);
-                $name=strtolower($name);
-                $name= ucfirst($name);
-                $color=$_POST["color"];
-                $type=$_POST["type"];
-                $drink=db_select('SELECT * FROM tabussa_drinks WHERE name="'.$name.'"');
-                if(isset($drink[0])){
-
-                    $message='Mec ta boisson '.$name.' existe déjà';
-                }else{
-                    db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type));
-                    $message='Ta boisson '.$name.' a été ajouté avec succès';
-                }
-
-
-            }else if(isset($_POST["name"])){
-                $name=htmlentities($_POST["name"]);
-                $name=strtolower($name);
-                $name_again= ucfirst($name);
-                $color_again=$_POST["color"];
-                $message = "N'oublie pas le type de ta boisson";
-            }else{
-                $message='oups';
-            }
-            include('controllers/admin.php');
+        default:
+            echo "problème";
             break;
+
+
     }
 }else{
     $output["error"]=true;

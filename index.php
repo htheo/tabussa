@@ -4,6 +4,8 @@ $tab_alerte = array();  // tableau pour afficher les alertes (souvent erreur)
 include 'includes/baseconnect.php';
 include 'includes/config.php';
 include 'includes/functions.php';
+include('includes/api_functions.php'); // on ajout le fichier php avec les fonctions de co API
+
 
 $black=true;
 
@@ -52,7 +54,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['id'])) {   // a remplir pour 
 
 
 $_POST["token"] = true; //c'est pour le local pour pouvoir faire les tests sans token
-if (isset($_POST["token"]) && isset($nom_first_url) && $nom_first_url == "API") { // on donnera des token pour se co
+if (isset($_POST["token"]) && isset($nom_first_url) && $nom_first_url == "api") { // on donnera des token pour se co
     $template = "connexion_api.php";
 
 } else if ($nom_first_url != ""){   // si il y a un fichier

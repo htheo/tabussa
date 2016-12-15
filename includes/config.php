@@ -1,5 +1,5 @@
 <?php
-$url_base='http://localhost/admin_ds/';
+$url_base='http://theo-hinfray.fr/IIM/tabussa/';
 $debug=false;
 $is_local=true;
 
