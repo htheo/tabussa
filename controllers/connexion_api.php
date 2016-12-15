@@ -16,12 +16,15 @@ if(isset($nom_second_url)){
 
 
         case "cocktail":
-            /*$_POST["drinks"][0]=82;
-            $_POST["drinks"][1]=110;*/
-            $cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
+           //$_POST["drinks"][0]=82;
+            //$_POST["drinks"][1]=110;
+
+            $mycocktail=file_get_contents("php://input");
+
+            //$cocktail= set_cocktail(); // on récupère nb_likes du cocktail et nb_visite et on dit que ce cocktail a été fait (vérifier si cet adresse IP l'a déjà fait)
 
 
-            print(json_encode($cocktail));
+            print(json_encode($mycocktail));
             break;
         case "bonus":
             if(isset($_POST["id"])){
@@ -74,7 +77,7 @@ if(isset($nom_second_url)){
 
                     $message='Mec ta boisson '.$name.' existe déjà';
                 }else{
-                    //db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type));
+                    db_insert('tabussa_drinks',array("name"=>$name, "color"=>$color, 'type'=>$type));
                     $message='Ta boisson '.$name.' a été ajouté avec succès';
                 }
 

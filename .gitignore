@@ -20,6 +20,7 @@
 .idea/*
 
 .includes/baseconnect.php
+includes/basconnect.php
 
 # Gradle:
 .idea/gradle.xml
