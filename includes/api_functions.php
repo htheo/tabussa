@@ -35,21 +35,21 @@ function get_cocktails(){ //on récupère tous les cocktails
 }
 
 
-function cocktail_existant($add_cocktail_drinks, $where, $i){ //cocktail existant ou non
+function cocktail_existant($add_cocktail_drinks, $where, $j){ //cocktail existant ou non
 
-    for($i;$i<=10;$i++){
-        if($i==1){ //si c'est le premier ce n'est pas un "et" la condition
-            $where=$where." id_drink".$i."=0";
+    for($j;$j<=10;$j++){
+        if($j==1){ //si c'est le premier ce n'est pas un "et" la condition
+            $where=$where." id_drink".$j."=0";
 
         }else{
-            $where=$where." && id_drink".$i."=0";
+            $where=$where." && id_drink".$j."=0";
         }
     }
     $cocktail_cree=db_select('SELECT * FROM tabussa_cocktails '.$where);
     if(isset($cocktail_cree[0])){  //cocktail existant on récupère son id
         $id_cocktail=$cocktail_cree[0];
     }else{
-        $add_cocktail_drinks["visits"]=1;
+        $add_cocktail_drinks["visits"]=0;
         $id_cocktail=db_insert('tabussa_cocktails', $add_cocktail_drinks);
     }
     return $id_cocktail;
@@ -74,7 +74,6 @@ function file_get_contents_curl($url) {
 
 // SETTERS
 function set_cocktail(){
-    if(isset($_POST["drinks"])){
 
 
 
@@ -84,13 +83,13 @@ function set_cocktail(){
         asort($drinks);
         $where="WHERE "; //condition pour le select
         $i=1;
+        $add_cocktail_drinks="";
         foreach($drinks as $drink){
             if($i==1){ //si c'est le premier ce n'est pas un "et" la condition
                 $where=$where." ".$drink." IN(id_drink1, id_drink2, id_drink3, id_drink4, id_drink5, id_drink6, id_drink7, id_drink8, id_drink9, id_drink10)";
 
             }else{
                 $where=$where." && ".$drink." IN(id_drink1, id_drink2, id_drink3, id_drink4, id_drink5, id_drink6, id_drink7, id_drink8, id_drink9, id_drink10)";
-
 
                 }
                 $add_cocktail_drinks["id_drink".$i]=$drink;
@@ -127,7 +126,7 @@ function set_cocktail(){
 
 
             $id_cocktail = cocktail_existant($add_cocktail_drinks, $where,$i);
-            if(isset($id_cocktail["id"])){   //si il y a un cocktail existant
+            if($id_cocktail>0){   //si il y a un cocktail existant
                 $cocktail["visits"]=$id_cocktail["visits"];
                 $cocktail["id"]=$id_cocktail["id"];
                 $cocktail["bonus"]=$id_cocktail["bonus"];
@@ -143,11 +142,7 @@ function set_cocktail(){
         }else{
             $cocktail["error"]="Ce n'est pas un tableau";
         }
-    }else{
 
-        $cocktail["requete"] = json_decode(file_get_contents("php://input"));
-        $cocktail["error"]="Il n'y a pas de boissons envoyées en méthode POST";
-    }
     return $cocktail;
 }
 
