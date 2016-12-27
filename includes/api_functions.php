@@ -125,15 +125,16 @@ function set_cocktail(){
             }
 
 
-            $id_cocktail = cocktail_existant($add_cocktail_drinks, $where,$i);
-            if($id_cocktail>0){   //si il y a un cocktail existant
-                $cocktail["visits"]=$id_cocktail["visits"];
-                $cocktail["id"]=$id_cocktail["id"];
-                $cocktail["bonus"]=$id_cocktail["bonus"];
-                $cocktail["malus"]=$id_cocktail["malus"];
-                $visits=$id_cocktail["visits"];
+            $tab_cocktail = cocktail_existant($add_cocktail_drinks, $where,$i);
+            if($tab_cocktail>0){   //si il y a un cocktail existant
+                //print_r($tab_cocktail);
+                $cocktail["visits"]=$tab_cocktail["visits"];
+                $cocktail["id"]=$tab_cocktail["id"];
+                $cocktail["bonus"]=$tab_cocktail["bonus"];
+                $cocktail["malus"]=$tab_cocktail["malus"];
+                $visits=$tab_cocktail["visits"];
                 $visits++;
-                db_update("tabussa_cocktails", array("visits"=>$visits), array("id"=>$id_cocktail["id"]));
+                db_update("tabussa_cocktails", array("visits"=>$visits), array("id"=>$tab_cocktail["id"]));
             }else{
                 $cocktail["visits"]=1;
                 $cocktail["bonus"]=0;
